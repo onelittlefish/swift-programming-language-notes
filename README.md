@@ -12,14 +12,14 @@
 - `typealias NewType = ExistingType`
 - `Bool` (`true`, `false`)
 - tuples
-```objc
+```Swift
 let tuple = (foo, bar)
 let (foo, bar) = tuple
 let (foo, _) = tuple
 let tuple = (foo: "Foo", bar: "Bar")
 ```
 - optionals
-```swift
+```Swift
 if optional {
 	println("We have an \(optional!)")
 }

@@ -176,7 +176,7 @@ struct Thing {
 }
 ```
 ```objc
-- class Foo {
+class Foo {
 	var bar = Bar()
 	var baz = false
 	var qux: String?
@@ -197,42 +197,51 @@ struct Thing {
 - `@lazy var = Foo()`
   - initial value not calculated until first time it's used, must be a var
 - computed property
-	var center: Point {
-		get {
-			// do math
-			return Point(x: centerX, y: centerY)
-		}
-		set(newCenter) {
-			origin.x = // do math
-			origin.y = // do math
-		}
+```objc
+var center: Point {
+	get {
+		// do math
+		return Point(x: centerX, y: centerY)
 	}
-	- if setter doesn't define a name for new value, defaults to newValue
-	- read-only computed property
-		var volume: Double {
-			return width * height * depth
-		}
+	set(newCenter) {
+		origin.x = // do math
+		origin.y = // do math
+	}
+}
+```
+- more about computed properties
+  - if setter doesn't define a name for new value, defaults to newValue
+  - read-only computed property
+```objc
+var volume: Double {
+	return width * height * depth
+}
+```
 - property observers: can be added to any stored properties except lazy ones, not called when first initialized
-	var totalFoos: Int = 0 {
-		willSet {
-			println("Gonna have \(newValue) foos")
-		}
-		didSet {
-			println("Now have \(oldValue) foos")
-		}
+```objc
+var totalFoos: Int = 0 {
+	willSet {
+		println("Gonna have \(newValue) foos")
 	}
+	didSet {
+		println("Now have \(oldValue) foos")
+	}
+}
+```
 - type properties: can be stored or computed for value types (structs and enums), only computed for classes, must always have a default value
-	struct AStruct {
-		static var storedTypeProperty = "Foo"
-		static var computedTypeProperty: Int {
-			// return Int
-		}
+```objc
+struct AStruct {
+	static var storedTypeProperty = "Foo"
+	static var computedTypeProperty: Int {
+		// return Int
 	}
-	class AClass {
-		class var computedTypeProperty: Int {
-			// return Int
-		}
+}
+class AClass {
+	class var computedTypeProperty: Int {
+		// return Int
 	}
+}
+```
 
 # Methods
 - by default first parameter has a local name and subsequent have local and external, e.g. `func incrementBy(amount: Int, numberOfTimes: Int) {}` can be called with `foo.incrementBy(5, numberOfTimes: 3)`

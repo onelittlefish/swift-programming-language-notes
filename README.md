@@ -77,7 +77,7 @@ if optional {
 - can match tuples
 - `_` = don't care
 - can bind matched value
-```objc
+```Swift
 switch point {
 	case (let x, 0):
 		println("x is \(x) on x-axis")
@@ -86,7 +86,7 @@ switch point {
 }
 ```
 - `where`
-```objc
+```Swift
 switch point {
 	case let (x, y) where x == y:
 		println("x is \(x) on line x == y")
@@ -118,7 +118,7 @@ switch point {
 - single-expression closures implicitly return: `reversed = sort(array, { s1, s2 in s1 > s2 } )`
 - with shorthand arguments: `reversed = sort(names, { $0 > $1 })`
 - with trailing closure: `reversed = sort(names) { $0 > $1 }`
-```objc
+```Swift
 let result = array.map {
 	(var arrayItem) -> String in
 	// do stuff
@@ -130,7 +130,7 @@ let result = array.map {
   - values that are modified are captured as a reference
 
 # Enumerations
-```objc
+```Swift
 enum EnumName {
 	case Foo, Bar, Baz, Qux
 }
@@ -139,7 +139,7 @@ enum EnumName {
 - if type can be inferred: `aThing = .Bar`
 
 ## associated values
-```objc
+```Swift
 enum EnumName {
 	case Foo(Int, Int)
 	case Bar(String)
@@ -149,7 +149,7 @@ enum EnumName {
 - in a switch: `case .Foo(let firstNumber, let secondNumber)` or if you want all of the values: `case let .Foo(firstNumber, secondNumber)`
 
 ## raw values
-```objc
+```Swift
 enum ASCIIControlCharacter: Character {
 	case Tab = "\t"
 	case LineFeed = "\n"
@@ -169,13 +169,13 @@ enum InnerPlanet: Int {
 # Classes and Structures
 - things they both do: define properties, methods, subscripts, and initializers; be extended; conform to protocols
 - things only classes do: inherit another class, type cast, define deinitializers, have more than one reference to an instance (structures are always copied when passed)
-```objc
+```Swift
 struct Thing {
 	var width = 0
 	var height = 0
 }
 ```
-```objc
+```Swift
 class Foo {
 	var bar = Bar()
 	var baz = false
@@ -197,7 +197,7 @@ class Foo {
 - `@lazy var = Foo()`
   - initial value not calculated until first time it's used, must be a var
 - computed property
-```objc
+```Swift
 var center: Point {
 	get {
 		// do math
@@ -212,13 +212,13 @@ var center: Point {
 - more about computed properties
   - if setter doesn't define a name for new value, defaults to newValue
   - read-only computed property
-```objc
+```Swift
 var volume: Double {
 	return width * height * depth
 }
 ```
 - property observers: can be added to any stored properties except lazy ones, not called when first initialized
-```objc
+```Swift
 var totalFoos: Int = 0 {
 	willSet {
 		println("Gonna have \(newValue) foos")
@@ -229,7 +229,7 @@ var totalFoos: Int = 0 {
 }
 ```
 - type properties: can be stored or computed for value types (structs and enums), only computed for classes, must always have a default value
-```objc
+```Swift
 struct AStruct {
 	static var storedTypeProperty = "Foo"
 	static var computedTypeProperty: Int {
@@ -252,7 +252,7 @@ class AClass {
 # Subscripts
 - let you use `foo[bar]` syntax
 - can be read-only or write-only
-```objc
+```Swift
 subscript(index: Int) -> Int {
 	get {
 		// return an Int
@@ -263,7 +263,7 @@ subscript(index: Int) -> Int {
 }
 ```
 - read-only
-```objc
+```Swift
 subscript(index: Int) -> Int {
 	return multiplier * index
 }
@@ -311,7 +311,7 @@ subscript(index: Int) -> Int {
   - (or) subclass inherits or overrides all of superclass's designated initializers (even as a convenience initializer) -> inherits convenience initializers
 - `init(params) {}`, `convenience init(params) {}`
 - can set default property value with closure or function
-```objc
+```Swift
 let property: TheType = {
 	return value;
 }();
@@ -331,7 +331,7 @@ let property: TheType = {
   - can refer to self in property's default closure if it is lazy
   - can get into scenario where closure refers to self (capturing it) and property holds a strong reference to its closure
   - capture list
-  ```objc
+  ```Swift
 @lazy var aClosure: (Int, String) -> String = {
 	[unowned self] (index: Int, stringToProcess: String) -> String in
 	// closure body
@@ -359,7 +359,7 @@ let property: TheType = {
 - `Any`: any type except function types
 - using an `AnyObject[]`: `for movie in someObjects as Movie[] {}`
 - using an `Any[]`:
-```objc
+```Swift
 case let someDouble as Double where someDouble > 0
 case is Double
 case let (x, y) as (Double, Double)
@@ -368,7 +368,7 @@ case let (x, y) as (Double, Double)
 
 # Nested Types
 - irrelevant but you can define enums like this:
-```objc
+```Swift
 enum Rank: Int {
 	case Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten
 	case Jack, Queen, King, Ace
@@ -384,7 +384,7 @@ enum Rank: Int {
   - if you add an initializer to a value type that provides default values for all stored properties and does not have any custom initializers, you can call the default initializer and memberwise initializer from the extension's initializer (defaults still apply)
 
 # Protocols
-```objc
+```Swift
 protocol SomeProtocol {
 	var settable: Int { get set }
 	var doesNotNeedToBeSettable: Int { get }
@@ -393,13 +393,13 @@ protocol AnotherProtocol {
 	class var typeProperty: Int { get set }
 }
 ```
-```objc
+```Swift
 struct Person: FullyNamed {
 	var fullName: String
 }
 ```
 - protocol methods cannot specify defaults for params
-```objc
+```Swift
 protocol MethodProtocol {
 	class func someTypeMethod()
 }
@@ -410,7 +410,7 @@ protocol AnotherMethodProtocol {
 - method can be mutating, do not need to write `mutating` in implementation for a class
 - example of calling a delegate: `delegate?.gameDidStart(self)`
 - adding protocol with extension
-```objc
+```Swift
 extension SomeClass: SomeProtocol {
 	func requiredMethod() {
 		// do stuff
@@ -424,7 +424,7 @@ extension SomeClass: SomeProtocol {
   - check for implementation: `optionalMethod?(param)`
   - optional properties/methods always return optionals
   - can only be used if @objc
-```objc
+```Swift
 @objc protocol FooProtocol {
 	@optional func bar(baz: Int) -> Int
 	@optional var qux: Int { get }
@@ -433,7 +433,7 @@ extension SomeClass: SomeProtocol {
 
 # Generics
 - `func swapValues<T>(inout a: T, inout b: T) {}`
-```objc
+```Swift
 struct Stack<T> {
 	var items = T[]()
 	mutating func push(item: T) {
@@ -447,7 +447,7 @@ struct Stack<T> {
 - `var stringStack = Stack<String>()`
 - type constraints: `func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {}`
 - associated types: used in protocols
-```objc
+```Swift
 protocol Container {
 	typealias ItemType
 	mutating func append(item: ItemType)

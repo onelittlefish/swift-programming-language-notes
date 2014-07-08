@@ -19,7 +19,7 @@ let (foo, _) = tuple
 let tuple = (foo: "Foo", bar: "Bar")
 ```
 - optionals
-```objc
+```swift
 if optional {
 	println("We have an \(optional!)")
 }

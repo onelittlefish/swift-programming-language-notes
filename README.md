@@ -24,70 +24,78 @@ if optional {
 	println("We have an \(optional!)")
 }
 ```
-	- forced unwrapped: `optional!`
-	- `if let actualNumber = possibleNumber.toInt() {}`
-	- `nil` = no value, can't use nil with non-optionals
-	- implicitly unwrapped optionals
-		- `let assumedString: String! = "foo"`
-		- for when an optional is confirmed to have a value and can be assumed to continue having one, accessing one when it's nil causes runtime error
+  - forced unwrapped: `optional!`
+  - `if let actualNumber = possibleNumber.toInt() {}`
+  - `nil` = no value, can't use nil with non-optionals
+  - implicitly unwrapped optionals
+    - `let assumedString: String! = "foo"`
+    - for when an optional is confirmed to have a value and can be assumed to continue having one, accessing one when it's nil causes runtime error
 - `assert(expression, "Optional string with no interpolation")`
 
 # Operators
-- assignment does not return a value (can't do if foo = bar {})
-- can use % with floating point numbers
-- use ++i unless you really need i++ behavior
-- compound assignment (e.g. +=) does not return a value
-- === and !== test whether objects are the same instance
-- range: 1...4 (includes 4), 0..count (does not include count)
+- assignment does not return a value (can't do `if foo = bar {}`)
+- can use `%` with floating point numbers
+- use `++i` unless you really need `i++` behavior
+- compound assignment (e.g. `+=`) does not return a value
+- `===` and `!==` test whether objects are the same instance
+- range: `1...4` (includes 4), `0..count` (does not include count)
 
 # Strings
-- "" and String() are both empty strings
-- mutability based on var vs. let
-- isEmpty
+- `""` and `String()` are both empty strings
+- mutability based on `var` vs. `let`
+- `isEmpty`
 - value type (copied when passed)
 
 # Collections
+
 ## Arrays
-- have a type: Type[] (also Array<Type>)
-- count/isEmpty
-- +=
-- for in with index: for (index, value) in enumerate(shoppingList) {}
-- var ints = Int[]()
-- var doubles = Array(count: 3, repeatedValue: 1.5)
+- have a type: `Type[]` (also `Array<Type>`)
+- `count`/`isEmpty`
+- `+=`
+- for in with index: `for (index, value) in enumerate(shoppingList) {}`
+- `var ints = Int[]()`
+- `var doubles = Array(count: 3, repeatedValue: 1.5)`
+
 ## Dictionaries
-- Dictionary<KeyType, ValueType>()
-- can remove by doing dict["key"] = nil
-- empty dictionary if type is known: dict = [:]
+- `Dictionary<KeyType, ValueType>()`
+- can remove by doing `dict["key"] = nil`
+- empty dictionary if type is known: `dict = [:]`
+
 ## Immutability
 - immutable dictionaries can't change size or values
 - immutable arrays can't change size but you can change the value for an existing index
 
 # Control Flow
+
 ## Switch
-	- must be exhaustive
-	- cases do not fall through
-	- each case body must contain >= 1 executable statement (break counts)
-	- can match multiple values (separated with commas)
-	- can match ranges
-	- can match tuples
-	- _ = don't care
-	- can bind matched value
-		switch point {
-			case (let x, 0):
-				println("x is \(x) on x-axis")
-			case let (x, y):
-				println("\(x), \(y)")
-		}
-	- where
-		switch point {
-			case let (x, y) where x == y:
-				println("x is \(x) on line x == y")
-			case let (x, y):
-				println("\(x), \(y)")
-		}
-	- continue, break
-	- fallthrough (does not check next case condition)
-- can label statements and use label with break/continue: label: while foo == bar {} to make it clear in nested statements
+- must be exhaustive
+- cases do not fall through
+- each case body must contain >= 1 executable statement (`break` counts)
+- can match multiple values (separated with commas)
+- can match ranges
+- can match tuples
+- `_` = don't care
+- can bind matched value
+- ```objc
+switch point {
+	case (let x, 0):
+		println("x is \(x) on x-axis")
+	case let (x, y):
+		println("\(x), \(y)")
+}
+```
+- `where`
+switch point {
+	case let (x, y) where x == y:
+		println("x is \(x) on line x == y")
+	case let (x, y):
+		println("\(x), \(y)")
+}
+- `continue`, `break`
+- `fallthrough` (does not check next case condition)
+
+## Other
+- can label statements and use label with `break`/`continue`: `label: while foo == bar {}` to make it clear in nested statements
 
 # Functions
 - func functionName(localParamName: Type) {}

@@ -1,32 +1,36 @@
 # Basics
-- let
-- var
-- let foo: Type
-- println/print, "string \(interpolation)"
+- `let`
+- `var`
+- `let foo: Type`
+- `println`/`print`, `"string \(interpolation)"`
 - nested multiline comments
-- use Int unless you really need a different type of integer
-- swift defaults to Double (over Float) when inferring
+- use `Int` unless you really need a different type of integer
+- swift defaults to `Double` (over `Float`) when inferring
 - numeric literals can have underscores (for readability)
-- integer/floating point type conversions must be explicit (e.g. Double(three))
+- integer/floating point type conversions must be explicit (e.g. `Double(three)`)
 - literals don't need to be converted
-- typealias NewType = ExistingType
-- Bool (true, false)
+- `typealias NewType = ExistingType`
+- `Bool` (`true`, `false`)
 - tuples
-	- let tuple = (foo, bar)
-	- let (foo, bar) = tuple
-	- let (foo, _) = tuple
-	- let tuple = (foo: "Foo", bar: "Bar")
+```objc
+let tuple = (foo, bar)
+let (foo, bar) = tuple
+let (foo, _) = tuple
+let tuple = (foo: "Foo", bar: "Bar")
+```
 - optionals
-	- if optional {
-		println("We have an \(optional!)")
-	}
-	- forced unwrapped: optional!
-	- if let actualNumber = possibleNumber.toInt() {}
-	- nil = no value, can't use nil with non- optionals
+```objc
+if optional {
+	println("We have an \(optional!)")
+}
+```
+	- forced unwrapped: `optional!`
+	- `if let actualNumber = possibleNumber.toInt() {}`
+	- `nil` = no value, can't use nil with non-optionals
 	- implicitly unwrapped optionals
-		- let assumedString: String! = "foo"
+		- `let assumedString: String! = "foo"`
 		- for when an optional is confirmed to have a value and can be assumed to continue having one, accessing one when it's nil causes runtime error
-- assert(expression, "Optional string with no interpolation")
+- `assert(expression, "Optional string with no interpolation")`
 
 # Operators
 - assignment does not return a value (can't do if foo = bar {})
@@ -44,16 +48,17 @@
 
 # Collections
 ## Arrays
-	- have a type: Type[] (also Array<Type>)
-	- count/isEmpty
-	- +=
-	- for in with index: for (index, value) in enumerate(shoppingList) {}
-	- var ints = Int[]()
-	- var doubles = Array(count: 3, repeatedValue: 1.5)
+- have a type: Type[] (also Array<Type>)
+- count/isEmpty
+- +=
+- for in with index: for (index, value) in enumerate(shoppingList) {}
+- var ints = Int[]()
+- var doubles = Array(count: 3, repeatedValue: 1.5)
 ## Dictionaries
-	- Dictionary<KeyType, ValueType>()
-	- can remove by doing dict["key"] = nil
-	- empty dictionary if type is known: dict = [:]
+- Dictionary<KeyType, ValueType>()
+- can remove by doing dict["key"] = nil
+- empty dictionary if type is known: dict = [:]
+## Immutability
 - immutable dictionaries can't change size or values
 - immutable arrays can't change size but you can change the value for an existing index
 
